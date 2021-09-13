@@ -1,0 +1,27 @@
+.dashboard-container{
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 800px;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-top: 20px;
+}
+
+.body{
+  color: rgba(54, 82, 124, 1);
+}
+
+.dataRow{
+  border-bottom: 0.25px solid rgba(54, 82, 124, 1);
+  margin-top: 20px;
+}
+
+.quickAddRow{
+  padding-bottom: 30px;
+}
+
+.lastLoggedRecipeCol{
+  border-bottom: 0.25px solid rgba(54, 82, 124, 1);
+}

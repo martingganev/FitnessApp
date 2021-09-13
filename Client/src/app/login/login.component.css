@@ -1,0 +1,24 @@
+#login-container{
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 600px;
+  height: 586px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-top: 100px;
+}
+
+#login-inner-container{
+  padding-top: 70px;
+}
+
+#login-button{
+  margin-top: 50px;
+  color: #fff;
+  background-color: #36527C;
+  border-color: #36527C;
+  border-radius: 15px;
+  width: 158px;
+  height: 60px;
+}

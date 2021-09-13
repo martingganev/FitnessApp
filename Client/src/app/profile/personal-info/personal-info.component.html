@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row container-fluid d-flex justify-content-center">
+        <div class="col-6 col-xl-6 col-md-offset 3">
+            <div class="h3 text-center pt-5">This is your personal info</div>
+            <form id="regForm" [formGroup]="updateUserInfoForm" (ngSubmit)="updateUserInfo()">
+                <div class="form-group mb-3">
+                    <label for="username" class="h5 fw-bold">Username</label>
+                    <input type="text" class="form-control" [(ngModel)]="personalInfo.userName"
+                        formControlName="username">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email" class="h5 fw-bold">Email</label>
+                    <input type="email" class="form-control" [(ngModel)]="personalInfo.email" formControlName="email">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="height" class="h5 fw-bold">Height</label>
+                    <input type="number" class="form-control" [(ngModel)]="personalInfo.height"
+                        formControlName="height">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="weight" class="h5 fw-bold">Weight</label>
+                    <input type="number" class="form-control" [(ngModel)]="personalInfo.weight"
+                        formControlName="weight">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="gender" class="h5 fw-bold">Gender</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="1"
+                            id="male" [checked]="personalInfo.gender === 1 ? 'checked' : ''">
+                        <label class="form-check-label" for="male">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="2"
+                            id="female" [checked]="personalInfo.gender === 2 ? 'checked' : ''">
+                        <label class="form-check-label" for="female">
+                            Female
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="dailyCalorieGoal" class="h5 fw-bold">Daily Calories</label>
+                    <input type="number" class="form-control" [(ngModel)]="personalInfo.dailyCalorieGoal"
+                        formControlName="dailyCalorieGoal">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="trainingGoal" class="h5 fw-bold">Training Goal</label>
+                    <input type="number" class="form-control" [(ngModel)]="personalInfo.trainingGoal"
+                        formControlName="trainingGoal">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="workoutSchedule" class="h5 fw-bold">Your workout schedule</label>
+                    <select class="form-select" id="workoutScheduleSelect" size="7" aria-label="Select your Workout Schedule" formControlName="workoutSchedule" multiple>
+                        <option value="1" [selected]="personalInfo.workoutSchedule.includes('1')">Monday</option>
+                        <option value="2" [selected]="personalInfo.workoutSchedule.includes('2')">Tuesday</option>
+                        <option value="3" [selected]="personalInfo.workoutSchedule.includes('3')">Wednesday</option>
+                        <option value="4" [selected]="personalInfo.workoutSchedule.includes('4')">Thursday</option>
+                        <option value="5" [selected]="personalInfo.workoutSchedule.includes('5')">Friday</option>
+                        <option value="6" [selected]="personalInfo.workoutSchedule.includes('6')">Saturday</option>
+                        <option value="7" [selected]="personalInfo.workoutSchedule.includes('7')">Sunday</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-lg btn-success h5" id="login-button">Update Info</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+    <a class="navbar-brand ps-5" routerLink="/">
+      <img class="mr-2 img-fluid pe-2" src="../assets/Logo.svg" />
+      <span class="align-middle fw-bolder fs-4" id="logo-text">Fitness App</span>
+    </a>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active pe-3 fs-5" routerLink="workouts">Workouts</a>
+      <a class="nav-item nav-link active pe-3 fs-5" routerLink="workouts/create" *ngIf="IsAuthenticated()">Create a Workout</a>
+      <a class="nav-item nav-link active pe-3 fs-5" routerLink="recipes">Recipes</a>
+      <a class="nav-item nav-link active pe-3 fs-5" routerLink="recipes/create" *ngIf="IsAuthenticated()">Create a Recipe</a>
+      <a class="nav-item nav-link active pe-3 fs-5" routerLink="login" *ngIf="!IsAuthenticated()">Log In</a>
+      <a class="nav-item nav-link active pe-5 fs-5" routerLink="register" *ngIf="!IsAuthenticated()">Register</a>
+      <a class="nav-item nav-link active pe-5 fs-5" routerLink="profile/changePassword" *ngIf="IsAuthenticated()">Change Password</a>
+      <a class="nav-item nav-link active pe-5 fs-5" routerLink="profile/personalInfo"*ngIf="IsAuthenticated()">Personal Info</a>
+      <a class="nav-item nav-link active pe-5 fs-5" routerLink="logout"*ngIf="IsAuthenticated()">Logout</a>
+    </div>
+  </nav>

@@ -1,0 +1,57 @@
+<div class="container-fluid" id="recipe-details-wrapper">
+    <div class="row card-row d-flex justify-content-between">
+        <div class="card-title h5 col-lg-9 fw-bold">
+            <div class="py-2">{{recipe.name}}</div>
+
+            <div>{{recipe.totalCalories}} Cal / {{recipe.difficulty}}</div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-sm-1 position-relative" [ngClass] = "{'recipe-time-fast': recipe.timeToFinish < 15, 'recipe-time-medium': recipe.timeToFinish >= 15 && recipe.timeToFinish < 45, 'recipe-time-slow': recipe.timeToFinish >= 45}">
+            <div class="position-absolute top-50 start-50 translate-middle">{{recipe.timeToFinish}}'</div>
+        </div>
+    </div>
+    <div class="row d-flex py-3">
+        <div class="col-lg-6">
+            <img src="{{recipe.photo}}" class="card-img-top recipe-image" alt="...">
+            <div class="py-3">
+                <h5 class="card-title h5">INGREDIENTS</h5>
+                <div class="card-text card-description">
+                    <div *ngFor="let product of recipe.products">
+                        {{product.productName}} - {{product.quantity}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="">
+                <h5 class="card-title h5">HOW TO PREPARE</h5>
+                <div class="card-text card-description">
+                    {{recipe.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div col-lg-12>
+            <h5 class="card-title h5">NOTES AND TIPS</h5>
+            <div class="card-text card-description">
+                {{recipe.notesAndTips}}
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-between">
+        <div class="col-lg-7"></div>
+        <button class="btn btn-secondary col-sm-1 add-btn position-relative mb-3" mat-button mat-dialog-close>
+            <div class="position-absolute top-50 start-50 translate-middle">Close</div>
+        </button>
+        <button class="btn btn-danger col-sm-1 add-btn position-relative mb-3" mat-button mat-dialog-close (click)="delete(recipe.id)" *ngIf="recipe.isMine === true">
+            <div class="position-absolute top-50 start-50 translate-middle">Delete</div>
+        </button>
+        <button class="btn btn-secondary col-sm-1 add-btn position-relative mb-3" mat-button mat-dialog-close (click)="edit(recipe.id)" *ngIf="recipe.isMine === true">
+            <div class="position-absolute top-50 start-50 translate-middle">Edit</div>
+        </button>
+        <button class="btn btn-success col-sm-1 add-btn position-relative mb-3" *ngIf="IsAuthenticated()" (click)="addRecipeToUser(recipe.id)">
+            <div class="position-absolute top-50 start-50 translate-middle">Add</div>
+        </button>
+    </div>
+</div>

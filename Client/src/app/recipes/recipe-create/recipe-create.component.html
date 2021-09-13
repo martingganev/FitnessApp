@@ -1,0 +1,88 @@
+<div class="container-fluid" id="login-container">
+  
+    <div class="row container-fluid d-flex justify-content-center" id="login-inner-container">
+      <div class="col-6 col-xl-6 col-md-offset 3">
+        <div class="h3 text-center pt-5">Create your Recipe</div>
+        <form [formGroup]="createForm" (ngSubmit)="createRecipe()">
+            <div class="form-group mb-3">
+              <label for="name" class="h5 fw-bold">Recipe Name</label>
+              <input type="text" class="form-control" formControlName="name">
+              <div class="alert alert-danger" *ngIf="name.touched && name.errors?.required">
+                This field is required!
+              </div>
+            </div>
+            
+            <div class="form-group mb-3">
+              <label for="timeToFinish" class="h5 fw-bold">Time To Finish</label>
+              <input type="number" class="form-control" formControlName="timeToFinish">
+              <div class="alert alert-danger" *ngIf="timeToFinish.touched && timeToFinish.errors?.required">
+                This field is required!
+              </div>
+            </div>
+           
+            <div class="form-group mb-3">
+                <label for="difficulty" class="h5 fw-bold">Difficulty</label>
+                <select formControlName="difficulty" class="form-control" placeholder="Item name">
+                    <option value=1>Easy</option>
+                    <option value=2>Medium</option>
+                    <option value=3>Difficult</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="difficulty.touched && difficulty.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="photo" class="h5 fw-bold">Photo</label>
+                <input type="text" class="form-control" formControlName="photo">
+                <div class="alert alert-danger" *ngIf="photo.touched && photo.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="description" class="h5 fw-bold">Description</label>
+                <textarea type="text" class="form-control" formControlName="description"></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="notesAndTips" class="h5 fw-bold">Notes and Tips</label>
+                <textarea type="text" class="form-control" formControlName="notesAndTips"></textarea>
+                <div class="alert alert-danger" *ngIf="notesAndTips.touched && notesAndTips.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div *ngFor="let item of createForm.get('products')['controls']; let i = index" class="form-group mb-3 row productSelectionDiv">
+                <div class="col-3">
+                    <label class="h5 fw-bold">Product</label>
+                    <select class="form-control" placeholder="Item name" id="productSelectionSelect{{i}}">
+                        <option *ngFor="let product of allProducts" value="{{product.id}}">
+                            {{product.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label class="h5 fw-bold">Quantity</label>
+                    <input class="form-control" type="number" placeholder="Quantity" id="productSelectionInput{{i}}">
+                </div>
+                <div class="col-1 d-flex align-items-end" *ngIf="createForm.get('products')['controls'].length > 1">
+                    <button type="button" class="btn btn-danger add-btn position-relative" (click)="removeItem(i)">X</button>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between">
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary add-btn position-relative mb-3" (click)="addItem()">Add Item</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-success add-btn position-relative mb-3" [disabled]="isInvalidForm()" (click)="createRecipe()">Create Recipe</button>
+                </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  

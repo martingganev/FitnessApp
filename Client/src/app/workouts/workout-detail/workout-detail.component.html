@@ -1,0 +1,51 @@
+<div class="container-fluid" id="workout-details-wrapper">
+    <div class="row card-row d-flex justify-content-between">
+        <div class="card-title h5 col-lg-9 fw-bold">
+            <div class="py-2">{{workout.name}}</div>
+
+            <div>{{workout.caloriesBurned}} Calories / {{workout.difficulty}}</div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-sm-1 position-relative" [ngClass] = "{'workout-time-fast': workout.timeToFinish < 15, 'workout-time-medium': workout.timeToFinish >= 15 && workout.timeToFinish < 45, 'workout-time-slow': workout.timeToFinish >= 45}">
+            <div class="position-absolute top-50 start-50 translate-middle">{{workout.timeToFinish}}'</div>
+        </div>
+    </div>
+    <div class="row d-flex py-3">
+        <div class="col-lg-6">
+            <img src="{{workout.photo}}" class="card-img-top workout-image" alt="...">
+            <div class="py-3">
+                <h5 class="card-title h5">Routine</h5>
+                <div class="card-text card-description">
+                    <div *ngFor="let exercise of workout.exercises">
+                        <div *ngFor="let rep of [].constructor(exercise.sets)">
+                            {{exercise.name}} {{exercise.repetitions}} reps
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="">
+                <h5 class="card-title h5">WORKOUT DESCRIPTION</h5>
+                <div class="card-text card-description">
+                    {{workout.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-between">
+        <div class="col-lg-7"></div>
+        <button class="btn btn-secondary col-sm-1 add-btn position-relative mb-3" mat-button mat-dialog-close>
+            <div class="position-absolute top-50 start-50 translate-middle">Close</div>
+        </button>
+        <button class="btn btn-danger col-sm-1 add-btn position-relative mb-3" mat-button mat-dialog-close (click)="delete(workout.id)" *ngIf="workout.isMine === true">
+            <div class="position-absolute top-50 start-50 translate-middle">Delete</div>
+        </button>
+        <button class="btn btn-secondary col-sm-1 add-btn position-relative mb-3" mat-button mat-dialog-close (click)="edit(workout.id)" *ngIf="workout.isMine === true">
+            <div class="position-absolute top-50 start-50 translate-middle">Edit</div>
+        </button>
+        <button class="btn btn-success col-sm-1 add-btn position-relative mb-3" *ngIf="IsAuthenticated()" (click)="addWorkoutToUser(workout.id)">
+            <div class="position-absolute top-50 start-50 translate-middle">Add</div>
+        </button>
+    </div>
+</div>

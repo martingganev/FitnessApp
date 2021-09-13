@@ -1,0 +1,94 @@
+<div class="container-fluid" id="login-container">
+  
+    <div class="row container-fluid d-flex justify-content-center" id="login-inner-container">
+      <div class="col-6 col-xl-6 col-md-offset 3">
+        <div class="h3 text-center pt-5">Create your Workout</div>
+  
+        <form [formGroup]="editForm" (ngSubmit)="editWorkout()">
+            <div class="form-group mb-3">
+              <label for="name" class="h5 fw-bold">Recipe Name</label>
+              <input type="text" class="form-control" formControlName="name" [(ngModel)]="this.workout.name">
+              <div class="alert alert-danger" *ngIf="name.touched && name.errors?.required">
+                This field is required!
+              </div>
+            </div>
+            
+            <div class="form-group mb-3">
+              <label for="timeToFinish" class="h5 fw-bold">Time To Finish</label>
+              <input type="number" class="form-control" formControlName="timeToFinish" [(ngModel)]="this.workout.timeToFinish">
+              <div class="alert alert-danger" *ngIf="timeToFinish.touched && timeToFinish.errors?.required">
+                This field is required!
+              </div>
+            </div>
+           
+            <div class="form-group mb-3">
+                <label for="difficulty" class="h5 fw-bold">Difficulty</label>
+                <select formControlName="difficulty" class="form-control" placeholder="Item name" id="difficultySelect">
+                    <option value="1" [selected]="workout.difficulty === 'Easy'">Easy</option>
+                    <option value="2" [selected]="workout.difficulty === 'Medium'">Medium</option>
+                    <option value="3" [selected]="workout.difficulty === 'Hard'">Hard</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="difficulty.touched && difficulty.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="photo" class="h5 fw-bold">Photo</label>
+                <input type="text" class="form-control" formControlName="photo" [(ngModel)]="this.workout.photo">
+                <div class="alert alert-danger" *ngIf="photo.touched && photo.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="description" class="h5 fw-bold">Description</label>
+                <textarea type="text" class="form-control" formControlName="description" [(ngModel)]="this.workout.description"></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="caloriesBurned" class="h5 fw-bold">Calories Burned</label>
+                <input type="number" class="form-control" formControlName="caloriesBurned" [(ngModel)]="this.workout.caloriesBurned">
+                <div class="alert alert-danger" *ngIf="caloriesBurned.touched && caloriesBurned.errors?.required">
+                  This field is required!
+                </div>
+            </div>
+
+            <div *ngFor="let item of editForm.get('exercises')['controls']; let i = index" class="form-group mb-3 row exerciseSelectionDiv">
+                <div class="col-3">
+                    <label class="h5 fw-bold">Exercise</label>
+                    <select class="form-control" placeholder="Item name" id="exerciseSelectionSelect{{i}}">
+                        <option *ngFor="let exercise of allExercises" value="{{exercise.id}}" [selected]="exercisesInWorkout[i] === exercise.name">
+                            {{exercise.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label class="h5 fw-bold">Sets</label>
+                    <input class="form-control" type="number" placeholder="Sets" id="exerciseSelectionInputSets{{i}}" [(ngModel)]="workout.exercises[i].sets" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-3">
+                    <label class="h5 fw-bold">Repetitions</label>
+                    <input class="form-control" type="number" placeholder="Reps" id="exerciseSelectionInputReps{{i}}" [(ngModel)]="workout.exercises[i].repetitions" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-1 d-flex align-items-end" *ngIf="editForm.get('exercises')['controls'].length > 1">
+                    <button type="button" class="btn btn-danger add-btn position-relative" (click)="removeItem(i)">X</button>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between">
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary add-btn position-relative mb-3" (click)="addItem()">Add Item</button>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-success add-btn position-relative mb-3" (click)="editWorkout()">Edit Workout</button>
+                </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  

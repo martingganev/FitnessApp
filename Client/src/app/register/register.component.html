@@ -1,0 +1,124 @@
+<div class="container-fluid" id="register-container">
+  <div class="h3 text-center pt-5">Welcome!</div>
+  <div class="text-center">
+    <span class="h5 pt-5">Let's set up your account</span>
+  </div>
+
+
+  <div class="row container-fluid" id="register-inner-container">
+    <div class="col-12 col-xl-12 col-md-offset 3">
+      <form id="regForm" [formGroup]="registerForm" (ngSubmit)="register()">
+        
+        <div class="tab">
+          <div class="form-group mb-3">
+            <label for="username" class="h5 fw-bold">Username</label>
+            <input type="text" class="form-control" formControlName="username">
+            <!-- <div class="alert alert-danger" *ngIf="username.touched && username.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+          <div class="form-group mb-3">
+            <label for="email" class="h5 fw-bold">Email</label>
+            <input type="email" class="form-control" formControlName="email">
+            <!-- <div class="alert alert-danger" *ngIf="username.touched && username.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+          <div class="form-group mb-3">
+            <label for="password" class="h5 fw-bold">Password</label>
+            <input type="password" class="form-control" formControlName="password">
+            <!-- <div class="alert alert-danger" *ngIf="password.touched && password.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+          <div class="form-group mb-3">
+            <div><span class="h6">Already have an account? </span> <a routerLink="/login" id="login-link">Log in here</a></div>
+          </div>
+        </div>
+
+        <div class="tab">
+          <div class="form-group mb-3">
+            <label for="height" class="h5 fw-bold">Height</label>
+            <input type="number" class="form-control" formControlName="height">
+            <!-- <div class="alert alert-danger" *ngIf="height.touched && height.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+          <div class="form-group mb-3">
+            <label for="weight" class="h5 fw-bold">Weight</label>
+            <input type="number" class="form-control" formControlName="weight">
+            <!-- <div class="alert alert-danger" *ngIf="weight.touched && weight.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+          <div class="form-group mb-3">
+            <label for="gender" class="h5 fw-bold">Gender</label>
+            <!-- <input type="text" class="form-control" formControlName="gender">
+            <div class="alert alert-danger" *ngIf="gender.touched && gender.errors?.required">
+              This field is required!
+            </div> -->
+            
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="1" id="male" checked>
+              <label class="form-check-label" for="male">
+                Male
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="2" id="female">
+              <label class="form-check-label" for="female">
+                Female
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab">
+          <div class="form-group mb-3">
+            <label for="dailyCalorieGoal" class="h5 fw-bold">Daily Calories</label>
+            <input type="number" class="form-control" formControlName="dailyCalorieGoal">
+            <!-- <div class="alert alert-danger" *ngIf="dailyCalorieGoal.touched && dailyCalorieGoal.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+          <div class="form-group mb-3">
+            <label for="trainingGoal" class="h5 fw-bold">Training Goal</label>
+            <input type="number" class="form-control" formControlName="trainingGoal">
+            <!-- <div class="alert alert-danger" *ngIf="trainingGoal.touched && trainingGoal.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+          <div class="form-group mb-3">
+            <!-- <input type="text" class="form-control" formControlName="workoutSchedule"> -->
+            <label for="workoutSchedule" class="h5 fw-bold">Set up your workout schedule</label>
+            <select class="form-select" id="workoutScheduleSelect" aria-label="Select your Workout Schedule" formControlName="workoutSchedule" multiple>
+              <option value="1" selected>Monday</option>
+              <option value="2">Tuesday</option>
+              <option value="3">Wednesday</option>
+              <option value="4">Thursday</option>
+              <option value="5">Friday</option>
+              <option value="6">Saturday</option>
+              <option value="7">Sunday</option>
+            </select>
+            <!-- <div class="alert alert-danger" *ngIf="workoutSchedule.touched && workoutSchedule.errors?.required">
+              This field is required!
+            </div> -->
+          </div>
+        </div>
+        <div style="overflow:auto;">
+          <div style="float:right;">
+            <button type="button" class="fw-bold" id="prevBtn" (click)="nextPrevMethod(-1)">Back</button>&nbsp;
+            <button type="button" class="fw-bold" id="nextBtn" (click)="nextPrevMethod(1)">Next</button>
+            <button type="submit" class="fw-bold" id="submitBtn">Submit</button>&nbsp;
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
